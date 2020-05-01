@@ -16,6 +16,7 @@
                 <br/>
 
                 <input type="submit" value="Submit">
+                <input type="button" value="Back" onclick="window.location='{{ route('project.index') }}'">
 
             </form>
         </div>
