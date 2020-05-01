@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
-                    <td>{{ $item->tasks->coutn() ?? '---'}}</td>
+                    <td>{{ $item->tasks->count() ?? '---'}}</td>
                     <td>
                         <a href="{{route('project.edit',[ $item ])}}">Edit</a>
                         &nbsp;|&nbsp;
