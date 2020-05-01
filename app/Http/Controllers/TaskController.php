@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $project = Project::find(intval($request->get('project_id')));
-        $items = $project->tasks()->paginate(env('PAGINATIONS','10'));
+        $items = $project->tasks()->orderBy('priority')->paginate(env('PAGINATIONS','10'));
         return view('tasks.index')->withItems($items)->withProject($project);
     }
 
