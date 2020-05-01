@@ -14,7 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $items = Project::paginate(env('PAGINATIONS','10'));
+        return view('projects.index')->withItems($items);
     }
 
     /**
@@ -34,17 +35,6 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Project $project)
     {
         //
     }
@@ -80,6 +70,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return back();
     }
 }
