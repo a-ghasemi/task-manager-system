@@ -23,6 +23,8 @@
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->tasks->count() ?? '---'}}</td>
                     <td>
+                        <a href="{{route('task.index',[ 'project_id' => $item->id ])}}">Tasks</a>
+                        &nbsp;|&nbsp;
                         <a href="{{route('project.edit',[ $item ])}}">Edit</a>
                         &nbsp;|&nbsp;
                         <form action="{{route('project.destroy',[ $item ])}}" style="display: inline-block" method="post">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,11 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $project = Project::find(intval($request->get('project_id')));
+        $items = $project->tasks()->paginate(env('PAGINATIONS','10'));
+        return view('tasks.index')->withItems($items)->withProject($project);
     }
 
     /**
@@ -22,9 +25,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('tasks.create')->with('project_id',intval($request->get('project_id')));
     }
 
     /**
@@ -35,18 +38,8 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
+        $task = Task::create($request->all());
+        return redirect()->route('task.index', [ 'project_id' => $task->project->id ]);
     }
 
     /**
@@ -55,9 +48,9 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Request $request, Task $task)
     {
-        //
+        return view('tasks.edit')->withItem($task)->with('project_id',intval($request->get('project_id')));
     }
 
     /**
@@ -69,7 +62,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->toArray());
+        return redirect()->route('project.index', [ 'project_id' => $task->project->id ]);
     }
 
     /**
@@ -80,6 +74,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return back();
     }
 }
