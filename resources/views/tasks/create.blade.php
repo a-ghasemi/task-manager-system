@@ -18,12 +18,12 @@
                 <br/>
 
                 <b>priority: </b><br/>
-                <input type="number" name="priority" value="{{ old('priority') }}" />
+                <input type="number" name="priority" value="{{ old('priority',100) }}" />
 
                 <br/>
 
                 <input type="submit" value="Submit">
-                <input type="button" value="Back" onclick="window.location='{{ route('project.index') }}'">
+                <input type="button" value="Back" onclick="window.location='{{ route('task.index', ['project_id' => $project_id]) }}'">
 
             </form>
         </div>

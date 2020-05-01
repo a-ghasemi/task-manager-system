@@ -15,19 +15,15 @@
         @csrf
 
         @method('PATCH')
+        <input type="hidden" name="project_id" value="{{ $project_id }}" />
 
         <b>Title: </b><br/>
         <input type="text" name="name" value="{{ $item->name ?? old('name') }}"/>
 
         <br/>
 
-        <b>priority: </b><br/>
-        <input type="number" name="priority" value="{{ $item->priority ?? old('priority') }}" />
-
-        <br/>
-
         <input type="submit" value="Submit">
-        <input type="button" value="Back" onclick="window.location='{{ route('project.index') }}'">
+        <input type="button" value="Back" onclick="window.location='{{ route('task.index', ['project_id' => $project_id]) }}'">
 
     </form>
 

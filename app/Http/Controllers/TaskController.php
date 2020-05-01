@@ -50,7 +50,7 @@ class TaskController extends Controller
      */
     public function edit(Request $request, Task $task)
     {
-        return view('tasks.edit')->withItem($task)->with('project_id',intval($request->get('project_id')));
+        return view('tasks.edit')->withItem($task)->with('project_id',$task->project->id);
     }
 
     /**
@@ -63,7 +63,7 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         $task->update($request->toArray());
-        return redirect()->route('project.index', [ 'project_id' => $task->project->id ]);
+        return redirect()->route('task.index', [ 'project_id' => $task->project->id ]);
     }
 
     /**
