@@ -77,4 +77,18 @@ class TaskController extends Controller
         $task->delete();
         return back();
     }
+
+    public function updateOrder(Request $request){
+        if($request->has('ids')){
+            $arr = explode(',',$request->input('ids'));
+
+            foreach($arr as $sortOrder => $id){
+                $task = Task::find($id);
+                $task->priority = $sortOrder;
+                $task->save();
+            }
+            return ['success'=>true,'message'=>'Updated'];
+        }
+    }
+
 }

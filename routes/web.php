@@ -17,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::resource('project','ProjectController');
 Route::resource('task','TaskController');
 Route::redirect('/', route('project.index'));
+
+Route::post('task/update-order','TaskController@updateOrder');
