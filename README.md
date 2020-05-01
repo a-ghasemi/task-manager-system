@@ -33,3 +33,7 @@ If you discover a security vulnerability, please send an e-mail to Me via [My Em
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 The Online Market Project is open-source software too.
+
+## Used Packages & Solutions
+I used below instrument to make Drag-n-Drop in task list:
+https://laravelarticle.com/laravel-6-drag-and-drop-menu-sorting
